@@ -27,6 +27,7 @@ docker run
 ### Environment Variables
 
 - `DISCORD_WEBHOOK_URL`: The webhook URL for the Discord channel where news will be posted.
+- `SLACK_WEBHOOK_URL`: The webhook URL for the Slack channel where news will be posted.
 - `SCHEDULE_PERIOD`: The frequency (in minutes) at which the bot fetches and posts news.
 - `FETCH_TOP_STORIES_AMOUNT`: The number of top stories the bot should fetch and attempt to post at each interval.
 - `STORAGE`: Specifies the method for tracking posted stories (`local` for file storage, `database` for SQLite).
@@ -46,6 +47,7 @@ pip install requests schedule sqlite3
 2. **Set the required environment variables in your terminal**:
 ```bash
 export DISCORD_WEBHOOK_URL="your_webhook_url_here"
+export SLACK_WEBHOOK_URL="your_webhook_url_here"
 export SCHEDULE_PERIOD=60
 export FETCH_TOP_STORIES_AMOUNT=5
 export STORAGE=local  # Or 'database'
