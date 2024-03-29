@@ -1,4 +1,4 @@
-# Hacker News Discord Bot
+# Hacker News Bot
 
 This is a simple Python script for a Discord and Slack bot, designed to fetch the latest news from Hacker News (HN) and post it to a specified Discord/Slack channel via webhooks. The bot is optimized for Docker deployment, offers different data storages (local files or SQLite) to track which news stories have been posted.
 
