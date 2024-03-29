@@ -3,13 +3,12 @@ import requests
 import schedule
 import time
 
-# Fetch the Discord webhook URL from an environment variable
 webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
+schedule_period = os.getenv('SCHEDULE_PERIOD', '1')
 
 HN_TOP_STORIES_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json'
 HN_ITEM_URL = 'https://hacker-news.firebaseio.com/v0/item/{}.json'
 
-# File to track posted story IDs
 POSTED_STORIES_FILE = 'posted_stories.txt'
 
 def load_posted_stories():
@@ -51,10 +50,8 @@ def fetch_and_post_news():
             post_to_discord(message)
             save_posted_story(story_id)
 
-# Schedule to run every 60 minutes
 schedule.every(1).minutes.do(fetch_and_post_news)
 
-# Keep the script running
 while True:
     schedule.run_pending()
     time.sleep(1)
