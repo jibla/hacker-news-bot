@@ -22,22 +22,21 @@ To run the bot locally, you will need either Python directly or Docker for conta
 
 ### Running with Docker
 
-1. **Build**:
-
-    ```shell
-    docker build -t hn-discord-bot .
-    ```
-2. **Run the container with the necessary environment variables:**:
-
     ```shell
     docker run
      -e DISCORD_WEBHOOK_URL="your_webhook_url_here"
+     -e SLACK_WEBHOOK_URL="your_webhook_url_here"
      -e SCHEDULE_PERIOD=60
      -e FETCH_TOP_STORIES_AMOUNT=5
      -e STORAGE=local
-     hn-discord-bot
+     jibla/hn-bot
     ```
-Replace 'YourWebhookURL' with your actual Discord webhook URL and adjust other environment variables as needed.
+
+You can also build it from source using the Dockerfile:
+
+    ```shell
+    docker build -t hn-bot .
+    ```
 
 ### Running with Python
 
