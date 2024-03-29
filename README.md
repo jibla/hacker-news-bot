@@ -12,14 +12,6 @@ This is a simple Python script for a Discord and Slack bot, designed to fetch th
 
 To run the bot locally, you will need either Python directly or Docker for containerized deployment.
 
-### Environment Variables
-
-- `DISCORD_WEBHOOK_URL`: The webhook URL for the Discord channel where news will be posted.
-- `SCHEDULE_PERIOD`: The frequency (in minutes) at which the bot fetches and posts news.
-- `FETCH_TOP_STORIES_AMOUNT`: The number of top stories the bot should fetch and attempt to post at each interval.
-- `STORAGE`: Specifies the method for tracking posted stories (`local` for file storage, `database` for SQLite).
-
-
 ### Running with Docker
 
 ```bash
@@ -31,6 +23,13 @@ docker run
     -e STORAGE=local
     jibla/hn-bot
 ```
+
+### Environment Variables
+
+- `DISCORD_WEBHOOK_URL`: The webhook URL for the Discord channel where news will be posted.
+- `SCHEDULE_PERIOD`: The frequency (in minutes) at which the bot fetches and posts news.
+- `FETCH_TOP_STORIES_AMOUNT`: The number of top stories the bot should fetch and attempt to post at each interval.
+- `STORAGE`: Specifies the method for tracking posted stories (`local` for file storage, `database` for SQLite).
 
 You can also build it from source using the Dockerfile:
 
