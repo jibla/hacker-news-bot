@@ -4,7 +4,8 @@ import schedule
 import time
 
 webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
-schedule_period = os.getenv('SCHEDULE_PERIOD', '1')
+schedule_period = int(os.getenv('SCHEDULE_PERIOD', '60'))
+fetch_top_stories_amount = int(os.getenv('FETCH_TOP_STORIES_AMOUNT', '5'))
 
 HN_TOP_STORIES_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json'
 HN_ITEM_URL = 'https://hacker-news.firebaseio.com/v0/item/{}.json'
@@ -40,18 +41,26 @@ def post_to_discord(message):
 
 def fetch_and_post_news():
     posted_stories = load_posted_stories()
-    top_stories = fetch_top_stories(5)
-    for story_id in top_stories:
+    all_story_ids = requests.get(HN_TOP_STORIES_URL).json()
+    new_stories_found = 0
+
+    for story_id in all_story_ids:
+        if new_stories_found >= fetch_top_stories_amount:
+            break
+
         if str(story_id) in posted_stories:
-            continue  # Skip this story if it has already been posted
+            continue 
+
         story = fetch_story_details(story_id)
         if story and 'url' in story:
             message = f"**{story['title']}**\n{story['url']}"
             post_to_discord(message)
             save_posted_story(story_id)
+            new_stories_found += 1
 
-schedule.every(1).minutes.do(fetch_and_post_news)
+schedule.every(schedule_period).minutes.do(fetch_and_post_news)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == "__main__":
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
