@@ -22,39 +22,36 @@ To run the bot locally, you will need either Python directly or Docker for conta
 
 ### Running with Docker
 
-    ```shell
-    docker run
-     -e DISCORD_WEBHOOK_URL="your_webhook_url_here"
-     -e SLACK_WEBHOOK_URL="your_webhook_url_here"
-     -e SCHEDULE_PERIOD=60
-     -e FETCH_TOP_STORIES_AMOUNT=5
-     -e STORAGE=local
-     jibla/hn-bot
-    ```
+```bash
+docker run
+    -e DISCORD_WEBHOOK_URL="your_webhook_url_here"
+    -e SLACK_WEBHOOK_URL="your_webhook_url_here"
+    -e SCHEDULE_PERIOD=60
+    -e FETCH_TOP_STORIES_AMOUNT=5
+    -e STORAGE=local
+    jibla/hn-bot
+```
 
 You can also build it from source using the Dockerfile:
 
-    ```shell
-    docker build -t hn-bot .
-    ```
+```bash
+docker build -t hn-bot .
+```
 
 ### Running with Python
 
 1. **Install Dependencies**:
-   ```shell
-   pip install requests schedule sqlite3
-    ```
+```bash
+pip install requests schedule sqlite3
+```
 2. **Set the required environment variables in your terminal**:
-    ```shell
-    export DISCORD_WEBHOOK_URL="your_webhook_url_here"
-    export SCHEDULE_PERIOD=60
-    export FETCH_TOP_STORIES_AMOUNT=5
-    export STORAGE=local  # Or 'database'
-    ```
+```bash
+export DISCORD_WEBHOOK_URL="your_webhook_url_here"
+export SCHEDULE_PERIOD=60
+export FETCH_TOP_STORIES_AMOUNT=5
+export STORAGE=local  # Or 'database'
+```
 3. **Run the script**:
-    ```shell
-    python hn_bot.py
-    ```
-
-
-
+```bash
+python hn_bot.py
+```
